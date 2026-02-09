@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Прозрачное Партнёрство — бизнес-решения для роста компаний</title>
+  <meta name="description" content="Прозрачное Партнёрство — практичные методы повышения эффективности, прозрачное управление, устойчивый рост. Логистика, склад, тендеры, маркетинг, проектная деятельность." />
+
+  <style>
+    :root{
+      /* LIGHT THEME */
+      --bg: #f7faf9;
+      --bg2:#eef4f2;
+      --card:#ffffff;
+      --card2:#ffffff;
+      --text:#13201b;
+      --muted:#52655e;
+      --line: rgba(19,32,27,.10);
+
+      --accent:#c0392b;     /* красный акцент */
+      --accent-dark:#a82f24;
+      --accent2:#1f8a70;    /* мягкий зелёный */
+      --shadow: 0 16px 40px rgba(19,32,27,.10);
+
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(192,57,43,.10), transparent 60%),
+        radial-gradient(900px 520px at 95% 12%, rgba(31,138,112,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+
+    /* Лёгкий рисунок/паттерн на заднем плане */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .55;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%2313201b' stroke-opacity='.08' stroke-width='1'%3E%3Cpath d='M0 60 C40 10 90 10 130 60 S220 110 260 60'/%3E%3Cpath d='M0 140 C40 90 90 90 130 140 S220 190 260 140'/%3E%3Cpath d='M0 220 C40 170 90 170 130 220 S220 270 260 220'/%3E%3Cpath d='M60 0 C10 40 10 90 60 130 S110 220 60 260'/%3E%3Cpath d='M140 0 C90 40 90 90 140 130 S190 220 140 260'/%3E%3Cpath d='M220 0 C170 40 170 90 220 130 S270 220 220 260'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 260px 260px;
+      background-repeat: repeat;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    /* Topbar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(247,250,249,.75);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+
+    /* Brand */
+    .brand{
+      display:flex;align-items:center;gap:12px;min-width:280px;
+    }
+    .brand .logo-img{
+      width:38px;height:38px;border-radius:12px;
+      object-fit:cover;
+      background:#fff;
+      box-shadow: 0 10px 22px rgba(19,32,27,.10);
+      border: 1px solid var(--line);
+    }
+    .brand .fallback-mark{
+      width:38px;height:38px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;color:#fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      box-shadow: 0 10px 22px rgba(192,57,43,.22);
+      border: 1px solid rgba(192,57,43,.25);
+    }
+    .brand-title{
+      font-weight:900;
+      letter-spacing:.01em;
+      font-size:1.02rem;
+      line-height: 1.05;
+    }
+    .brand-sub{
+      color:var(--muted);
+      font-size:.78rem;
+      margin-top:3px
+    }
+
+    /* Links */
+    .links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+    .links a{
+      color:var(--muted);
+      font-size:.92rem;
+      padding:6px 2px;
+      border-bottom:2px solid transparent;
+      transition:.18s ease;
+    }
+    .links a:hover{
+      color:var(--text);
+      border-bottom-color: rgba(192,57,43,.55);
+    }
+
+    /* CTA */
+    .cta{
+      display:flex;gap:10px;align-items:center;justify-content:flex-end;
+      min-width:280px;
+    }
+    .btn{
+      border-radius:999px;
+      padding:10px 16px;
+      font-size:.92rem;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:.16s ease;
+      user-select:none;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color:#fff;
+      box-shadow: 0 14px 26px rgba(192,57,43,.18);
+    }
+    .btn-primary:hover{transform:translateY(-1px);filter:saturate(1.05)}
+    .btn-ghost{
+      background: rgba(255,255,255,.75);
+      border-color: var(--line);
+      color: var(--text);
+    }
+    .btn-ghost:hover{border-color: rgba(192,57,43,.45)}
+
+    .badge{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:6px 12px;border-radius:999px;
+      background: rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:.78rem;
+    }
+    .badge i{
+      display:inline-block;width:8px;height:8px;border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(192,57,43,.12);
+    }
+
+    /* Hero */
+    .hero{padding:34px 0 26px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .hero-card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    h1{
+      font-size: clamp(2.0rem, 2.6vw + 1rem, 3.0rem);
+      line-height:1.15;
+      margin:12px 0 12px;
+      letter-spacing:-.02em;
+    }
+    .lead{color:var(--muted);max-width:58ch;font-size:1.02rem}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .hero-meta{
+      display:flex;gap:10px;flex-wrap:wrap;
+      margin-top:14px;color:var(--muted);font-size:.82rem
+    }
+    .pill{
+      font-size:.78rem;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.8);
+    }
+
+    .kpi-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      height:100%;
+    }
+    .kpi{
+      padding:14px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.85);
+    }
+    .kpi b{display:block;font-size:1.05rem}
+    .kpi p{color:var(--muted);font-size:.84rem;margin-top:4px}
+    .accentBox{
+      background: linear-gradient(135deg, rgba(192,57,43,.08), rgba(31,138,112,.08));
+    }
+
+    /* Sections */
+    section{padding:26px 0}
+    .section-head{margin-bottom:14px}
+    .section-head h2{
+      font-size:1.35rem;
+      letter-spacing:-.01em;
+      display:inline-block;
+      padding-bottom:6px;
+      border-bottom:3px solid rgba(192,57,43,.55); /* подчеркнутый */
+      font-weight:900;
+    }
+    .section-head p{color:var(--muted);margin-top:8px;max-width:90ch}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.82);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 10px 24px rgba(19,32,27,.07);
+    }
+    .card h3{
+      font-size:1.02rem;
+      letter-spacing:-.01em;
+      margin-bottom:6px;
+      font-weight:800;
+    }
+    .card p{color:var(--muted);font-size:.92rem}
+
+    .list{margin-top:10px;display:grid;gap:8px}
+    .li{
+      display:flex;gap:10px;align-items:flex-start;
+      color:var(--muted);font-size:.92rem
+    }
+    .li:before{
+      content:"✓";
+      color: var(--accent2);
+      font-weight:900;
+      margin-top:1px;
+    }
+
+    /* Services */
+    .service{
+      display:flex;flex-direction:column;gap:10px;
+      min-height: 240px;
+    }
+    .service .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+    .tag{
+      font-size:.78rem;
+      padding:4px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.8);
+    }
+
+    /* Steps */
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .step{
+      border:1px dashed rgba(19,32,27,.16);
+      background: rgba(255,255,255,.82);
+      border-radius: var(--radius);
+      padding:14px;
+    }
+    .n{
+      width:26px;height:26px;border-radius:999px;
+      border:1px solid rgba(192,57,43,.55);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;color:var(--accent);
+      margin-bottom:8px;
+      background: rgba(255,255,255,.9);
+    }
+    .step b{display:block;margin-bottom:4px}
+
+    /* Contact */
+    .contact{
+      display:grid;grid-template-columns: 1.15fr .85fr;gap:14px;
+    }
+    label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:4px}
+    input, textarea{
+      width:100%;
+      background: rgba(255,255,255,.95);
+      border:1px solid var(--line);
+      border-radius: 12px;
+      padding:10px 12px;
+      color:var(--text);
+      outline:none;
+      font:inherit;
+      transition:.15s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(192,57,43,.55);
+      box-shadow: 0 0 0 3px rgba(192,57,43,.12);
+    }
+    textarea{min-height:92px;resize:vertical}
+    .form{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+    }
+    .full{grid-column:1/-1}
+    .fine{color:var(--muted);font-size:.8rem;margin-top:10px}
+
+    footer{
+      padding:18px 0 26px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:.82rem;
+      background: rgba(255,255,255,.55);
+    }
+    .foot{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap
+    }
+    .foot a{color:var(--muted)}
+    .foot a:hover{color:var(--text);text-decoration:underline;text-underline-offset:4px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .cta,.brand{min-width:auto}
+      .links{display:none}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .contact{grid-template-columns:1fr}
+      .form{grid-template-columns:1fr}
+    }
+    @media (max-width: 520px){
+      .steps{grid-template-columns:1fr}
+      .brand-title{font-size:.98rem}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <!-- Если рядом с index.html лежит файл логотип.png — он подхватится -->
+          <img class="logo-img" src="логотип.png" alt="Логотип Прозрачное Партнёрство"
+               onerror="this.style.display='none'; document.getElementById('fallbackMark').style.display='flex';">
+          <div id="fallbackMark" class="fallback-mark" style="display:none;">ПП</div>
+
+          <div>
+            <div class="brand-title">Прозрачное Партнёрство</div>
+            <div class="brand-sub">Бизнес-решения, которые помогают компаниям расти</div>
+          </div>
+        </div>
+
+        <nav class="links" aria-label="Навигация">
+          <a href="#about">О нас</a>
+          <a href="#philosophy">Философия</a>
+          <a href="#model">Модель</a>
+          <a href="#services">Направления</a>
+          <a href="#offer">Предложение</a>
+          <a href="#contact">Контакты</a>
+        </nav>
+
+        <div class="cta">
+          <button class="btn btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'});">
+            Смотреть направления
+          </button>
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+            Оставить заявку
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-card">
+          <div class="badge"><i></i> Прозрачность • Ответственность • Рост</div>
+          <h1>Практичные методы улучшения работы компаний — <span style="color:var(--accent)">Понятно, Измеримо, Безопасно</span>.</h1>
+          <p class="lead">
+            Мы — команда специалистов, которая повышает эффективность процессов, делает управление прозрачным
+            и помогает компаниям уверенно и устойчиво развиваться.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Получить консультацию</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('model').scrollIntoView({behavior:'smooth'});">Как мы работаем</button>
+          </div>
+
+          <div class="hero-meta">
+            <span class="pill">Абонентское сопровождение</span>
+            <span class="pill">KPI и отчётность</span>
+            <span class="pill">Без скрытых расходов</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="kpi-grid">
+            <div class="kpi accentBox">
+              <b>Прозрачность</b>
+              <p>Открыто показываем каждый этап работы и логику результата.</p>
+            </div>
+            <div class="kpi">
+              <b>Ответственность</b>
+              <p>Берём обязательства и выполняем их предсказуемо и качественно.</p>
+            </div>
+            <div class="kpi">
+              <b>Партнёрская модель</b>
+              <p>Долгосрочное сотрудничество и взаимная выгода.</p>
+            </div>
+            <div class="kpi accentBox">
+              <b>Защита интересов</b>
+              <p>Сохраняем ресурсы партнёра и создаём устойчивую среду.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>О компании</h2>
+          <p>
+            «Прозрачное Партнёрство» — это команда специалистов, использующих практичные и понятные методы
+            улучшения работы компаний. Наша задача — повышать эффективность процессов, обеспечивать более прозрачное
+            управление и помогать бизнесу расти устойчиво.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Наша миссия</h3>
+            <p>
+              Сделать партнёров сильнее, конкурентоспособнее и устойчивее, создавая условия для стабильного роста и развития.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Наш фокус</h3>
+            <p>
+              Рост эффективности и снижение затрат партнёра за счёт оптимизации процессов и комплексного подхода к управлению.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Философия компании</h2>
+          <p>Основные принципы работы, которые лежат в основе всех направлений нашей деятельности.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Прозрачность процессов</h3>
+            <div class="list">
+              <div class="li">Открыто демонстрируем каждый этап работы.</div>
+              <div class="li">Понятно, как формируется результат.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Ответственность за результат</h3>
+            <div class="list">
+              <div class="li">Берём обязательства и выполняем их.</div>
+              <div class="li">Обеспечиваем предсказуемость и качество.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Честная модель</h3>
+            <div class="list">
+              <div class="li">Отказ от серых схем и скрытых расходов.</div>
+              <div class="li">Защита ресурсов и интересов партнёра.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODEL -->
+    <section id="model">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Модель сотрудничества</h2>
+          <p>
+            Мы работаем по принципу абонентского сопровождения: гибко, прозрачно и с измеримым результатом.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Ключевые элементы</h3>
+            <div class="list">
+              <div class="li">Понятная и фиксированная стоимость без скрытых расходов.</div>
+              <div class="li">Гибкое подключение/отключение услуг под задачи бизнеса.</div>
+              <div class="li">Единый центр компетенций по всем направлениям.</div>
+              <div class="li">KPI, регулярная отчётность и контроль качества.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Как выглядит старт</h3>
+            <div class="steps">
+              <div class="step">
+                <div class="n">1</div>
+                <b>Диагностика</b>
+                <div style="color:var(--muted);font-size:.90rem">Понимаем процессы и точки потерь.</div>
+              </div>
+              <div class="step">
+                <div class="n">2</div>
+                <b>План</b>
+                <div style="color:var(--muted);font-size:.90rem">Формируем цели, KPI и дорожную карту.</div>
+              </div>
+              <div class="step">
+                <div class="n">3</div>
+                <b>Внедрение</b>
+                <div style="color:var(--muted);font-size:.90rem">Запускаем изменения и контроль.</div>
+              </div>
+              <div class="step">
+                <div class="n">4</div>
+                <b>Отчётность</b>
+                <div style="color:var(--muted);font-size:.90rem">Фиксируем эффект и улучшаем дальше.</div>
+              </div>
+            </div>
+            <div class="fine">Логика модели — прозрачность решений и измеримый результат.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Направления работы</h2>
+          <p>Ключевые направления, которые закрывают операционные и управленческие задачи бизнеса.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card service">
+            <h3>Транспортная логистика</h3>
+            <p>Персональный логист 24/7. Мониторинг перевозок, прозрачные тарифы, оптимизация маршрутов и затрат.</p>
+            <div class="list">
+              <div class="li">Контроль статуса грузов в реальном времени.</div>
+              <div class="li">Прямая связь с водителями через платформы.</div>
+              <div class="li">Рост скорости доставки и качества сервиса.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Мониторинг</span>
+              <span class="tag">Тарифы без сюрпризов</span>
+              <span class="tag">Оптимизация затрат</span>
+            </div>
+          </div>
+
+          <div class="card service">
+            <h3>Складская логистика</h3>
+            <p>Управляемость • Точность • Автоматизация. Делаем склад понятным, управляемым и эффективным.</p>
+            <div class="list">
+              <div class="li">Аудит текущей работы склада и инфраструктуры.</div>
+              <div class="li">Рекомендации по автоматизации и стандартизации.</div>
+              <div class="li">Снижение ошибок, потерь и пересортицы.</div>
+              <div class="li">Сопровождение открытия/расширения складов.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Аудит</span>
+              <span class="tag">Автоматизация</span>
+              <span class="tag">Обучение персонала</span>
+            </div>
+          </div>
+
+          <div class="card service">
+            <h3>Тендеры и госзакупки</h3>
+            <p>Полный цикл сопровождения «под ключ» — от подбора до результата, включая оценку рисков и обучение.</p>
+            <div class="list">
+              <div class="li">Подбор релевантных тендеров и стратегия участия.</div>
+              <div class="li">Подготовка пакета документов и расчёт рентабельности.</div>
+              <div class="li">Сопровождение на всех этапах до итога.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Стратегия</span>
+              <span class="tag">Документы</span>
+              <span class="tag">Снижение рисков</span>
+            </div>
+          </div>
+
+          <div class="card service">
+            <h3>Маркетинг и развитие бизнеса</h3>
+            <p>Рост через аналитику и стратегию: рынок, конкуренты, позиционирование, SMM и направления роста.</p>
+            <div class="list">
+              <div class="li">Анализ рынка и конкурентной среды.</div>
+              <div class="li">Поиск новых продуктовых/сервисных направлений.</div>
+              <div class="li">Развитие соцсетей и укрепление бренда.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Аналитика</span>
+              <span class="tag">Позиционирование</span>
+              <span class="tag">SMM</span>
+            </div>
+          </div>
+
+          <div class="card service">
+            <h3>Проектная деятельность</h3>
+            <p>Управление проектами, контроль сроков и бюджета, координация участников, внедрение решений.</p>
+            <div class="list">
+              <div class="li">От планирования до завершения.</div>
+              <div class="li">Анализ и выбор оптимальных решений.</div>
+              <div class="li">Контроль исполнения и эффект.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Сроки</span>
+              <span class="tag">Бюджет</span>
+              <span class="tag">Результат</span>
+            </div>
+          </div>
+
+          <div class="card service">
+            <h3>Единая система управления</h3>
+            <p>KPI, регламенты и контроль качества: прозрачные решения на основе данных и защищённые интересы партнёра.</p>
+            <div class="list">
+              <div class="li">Формализованные процессы и показатели.</div>
+              <div class="li">Управление на основе данных.</div>
+              <div class="li">Контроль исполнения и стандартов.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">KPI</span>
+              <span class="tag">Отчётность</span>
+              <span class="tag">Контроль</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER -->
+    <section id="offer">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Итоговое предложение партнёрам</h2>
+          <p>Интегрированная модель партнёрства, ориентированная на измеримый результат и долгосрочное создание ценности.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Суть модели</h3>
+            <div class="list">
+              <div class="li">Процессы формализованы и управляются системой показателей.</div>
+              <div class="li">Решения принимаются прозрачно на основе данных и экономического обоснования.</div>
+              <div class="li">Каждая услуга нацелена на рост эффективности.</div>
+              <div class="li">Интересы партнёра защищены ответственностью и контролем.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Стратегический эффект</h3>
+            <p style="color:var(--muted);font-size:.95rem">
+              Внедрение управляемых бизнес-решений, обеспечивающих устойчивое развитие,
+              рост конкурентоспособности и долгосрочное увеличение стоимости компании.
+            </p>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+              <span class="pill">Устойчивый рост</span>
+              <span class="pill">Прозрачность решений</span>
+              <span class="pill">Снижение рисков</span>
+              <span class="pill">Эффективность</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Контакты</h2>
+          <p>Оставьте заявку — мы предложим формат сопровождения и начнём с диагностики ключевых процессов.</p>
+        </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:10px">Реквизиты</h3>
+            <p style="color:var(--muted);font-size:.92rem">
+              Телефон: +7 (908) 906-31-73<br/>
+              E-mail: transparent-partnership.ru@yandex.ru<br/>
+              График: Пн–Пт 09:00–19:00<br/>
+              Город: ________<br/>
+            </p>
+            <div style="margin-top:12px" class="badge"><i></i> Прозрачные процессы. Измеримый результат.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> «Прозрачное Партнёрство»</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#offer">Предложение</a>
+        <a href="#services">Направления</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
